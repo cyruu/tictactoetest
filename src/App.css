@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tictac {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 200px;
+}
+.player {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+.scorecard {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 30px;
+  /* background-color: red; */
+  font-size: 1.1rem;
+}
+.score {
+  background-color: black;
+  color: white;
+  padding: 0 5px;
+}
+i {
+  pointer-events: none;
+}
+.cell {
+  font-size: 2.5rem;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+  cursor: pointer;
+  border: 1px solid black;
+}
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: 0;
+}
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+  border-bottom: 0;
+}
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+  border-left: 0;
+}
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+  border-right: 0;
+}
+.result {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.715);
+  color: white;
+}
+.result p {
+  margin-top: 375px;
+  font-size: 5rem;
+}
+.btn {
+  background-color: white;
+  color: black;
+  font-size: 1.3rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background-color: rgb(193, 193, 193);
+  color: black;
+}
+#slashmark {
+  opacity: 0;
+  pointer-events: none;
+  height: 300px;
+  width: 2px;
+  background-color: black;
+  position: absolute;
+  top: 185px;
+}
