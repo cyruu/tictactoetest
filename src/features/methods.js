@@ -22,7 +22,9 @@ let methods = {
     markCount,
     winner,
     setXScore,
-    setOScore
+    setOScore,
+    winnerFound,
+    setWinnerFound
   ) => {
     const cell = document.getElementsByClassName("cell");
     const slashmark = document.getElementById("slashmark");
@@ -34,6 +36,7 @@ let methods = {
       cell[1].innerHTML == cell[2].innerHTML &&
       cell[0].innerHTML.trim() !== ""
     ) {
+      setWinnerFound(true);
       checkAndSetWinner(
         cell[0].innerHTML,
         setWinner,
@@ -52,6 +55,7 @@ let methods = {
       cell[4].innerHTML == cell[5].innerHTML &&
       cell[3].innerHTML.trim() !== ""
     ) {
+      setWinnerFound(true);
       checkAndSetWinner(
         cell[3].innerHTML,
         setWinner,
@@ -70,6 +74,7 @@ let methods = {
       cell[7].innerHTML == cell[8].innerHTML &&
       cell[6].innerHTML.trim() !== ""
     ) {
+      setWinnerFound(true);
       checkAndSetWinner(
         cell[6].innerHTML,
         setWinner,
@@ -89,6 +94,7 @@ let methods = {
       cell[3].innerHTML == cell[6].innerHTML &&
       cell[0].innerHTML.trim() !== ""
     ) {
+      setWinnerFound(true);
       checkAndSetWinner(
         cell[0].innerHTML,
         setWinner,
@@ -107,6 +113,7 @@ let methods = {
       cell[4].innerHTML == cell[7].innerHTML &&
       cell[1].innerHTML.trim() !== ""
     ) {
+      setWinnerFound(true);
       checkAndSetWinner(
         cell[1].innerHTML,
         setWinner,
@@ -125,6 +132,7 @@ let methods = {
       cell[5].innerHTML == cell[8].innerHTML &&
       cell[2].innerHTML.trim() !== ""
     ) {
+      setWinnerFound(true);
       checkAndSetWinner(
         cell[2].innerHTML,
         setWinner,
@@ -144,6 +152,7 @@ let methods = {
       cell[4].innerHTML == cell[8].innerHTML &&
       cell[0].innerHTML.trim() !== ""
     ) {
+      setWinnerFound(true);
       checkAndSetWinner(
         cell[0].innerHTML,
         setWinner,
@@ -162,6 +171,7 @@ let methods = {
       cell[4].innerHTML == cell[6].innerHTML &&
       cell[2].innerHTML.trim() !== ""
     ) {
+      setWinnerFound(true);
       checkAndSetWinner(
         cell[2].innerHTML,
         setWinner,
@@ -175,7 +185,7 @@ let methods = {
       slashmark.style.transform = "rotate(45deg) translateX(2px)";
     }
     //---------------------------checkTie--------------
-    else if (markCount == 8 && winner != null) {
+    else if (markCount == 8 && !winnerFound) {
       setTie(true);
     }
   },

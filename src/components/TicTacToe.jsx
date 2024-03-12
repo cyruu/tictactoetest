@@ -16,12 +16,14 @@ function TicTacToe() {
   const [winner, setWinner] = useState(null);
   const [tie, setTie] = useState(false);
   const [markCount, setMarkCount] = useState(0);
+  const [winnerFound, setWinnerFound] = useState(false);
   function handlePlayAgain() {
     resetCells();
     setGameOver(false);
     setTie(false);
     setMarkCount(0);
     setGameOver(false);
+    setWinnerFound(false);
   }
   useEffect(() => {
     currentPlayer == "X" ? setPlayerIcon(crossMark) : setPlayerIcon(circleMark);
@@ -42,7 +44,9 @@ function TicTacToe() {
         markCount,
         winner,
         setXScore,
-        setOScore
+        setOScore,
+        winnerFound,
+        setWinnerFound
       );
 
       setCurrentPlayer((prev) => (prev == "X" ? "O" : "X"));
