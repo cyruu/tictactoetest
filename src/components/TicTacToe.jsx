@@ -17,6 +17,7 @@ function TicTacToe() {
   const [tie, setTie] = useState(false);
   const [markCount, setMarkCount] = useState(0);
   const [winnerFound, setWinnerFound] = useState(false);
+
   function handlePlayAgain() {
     resetCells();
     setGameOver(false);

@@ -47,7 +47,7 @@ let methods = {
         setOScore
       );
       slashmark.style.opacity = "1";
-      slashmark.style.transform = "rotate(90deg) translateX(-80px)";
+      slashmark.style.transform = "translate(0px,35px) rotate(90deg)";
     }
     //second row
     else if (
@@ -66,7 +66,7 @@ let methods = {
         setOScore
       );
       slashmark.style.opacity = "1";
-      slashmark.style.transform = "rotate(90deg) translateX(0px)";
+      slashmark.style.transform = " translate(0px,115px) rotate(90deg)";
     }
     //third row
     else if (
@@ -85,7 +85,7 @@ let methods = {
         setOScore
       );
       slashmark.style.opacity = "1";
-      slashmark.style.transform = "rotate(90deg) translateX(80px)";
+      slashmark.style.transform = " translate(0px,195px) rotate(90deg)";
     }
     //---------------------------------check column----------------
     //first column
@@ -105,7 +105,7 @@ let methods = {
         setOScore
       );
       slashmark.style.opacity = "1";
-      slashmark.style.transform = "rotate(0deg) translateX(-80px)";
+      slashmark.style.transform = "translate(-80px,110px)";
     }
     //second column
     else if (
@@ -124,7 +124,7 @@ let methods = {
         setOScore
       );
       slashmark.style.opacity = "1";
-      slashmark.style.transform = "rotate(0deg) translateX(0px)";
+      slashmark.style.transform = "translate(0px,110px)";
     }
     //third column
     else if (
@@ -143,7 +143,7 @@ let methods = {
         setOScore
       );
       slashmark.style.opacity = "1";
-      slashmark.style.transform = "rotate(0deg) translateX(80px)";
+      slashmark.style.transform = "translate(80px,110px)";
     }
     //----------------------check diagonal----------------
     //first diagonal
@@ -163,7 +163,7 @@ let methods = {
         setOScore
       );
       slashmark.style.opacity = "1";
-      slashmark.style.transform = "rotate(-45deg) translateX(-3px)";
+      slashmark.style.transform = "translate(0px,115px) rotate(-45deg) ";
     }
     //second
     else if (
@@ -182,7 +182,7 @@ let methods = {
         setOScore
       );
       slashmark.style.opacity = "1";
-      slashmark.style.transform = "rotate(45deg) translateX(2px)";
+      slashmark.style.transform = "translate(0px,115px) rotate(45deg) ";
     }
     //---------------------------checkTie--------------
     else if (markCount == 8 && !winnerFound) {
