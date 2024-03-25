@@ -185,7 +185,7 @@ let methods = {
       slashmark.style.transform = "translate(0px,115px) rotate(45deg) ";
     }
     //---------------------------checkTie--------------
-    else if (markCount == 8 && !winnerFound) {
+    if (markCount == 8 && !winnerFound) {
       setTie(true);
     }
   },

@@ -87,7 +87,7 @@ function TicTacToe() {
       ) : (
         ""
       )}
-      {tie ? (
+      {tie && !winnerFound ? (
         <div className="result">
           <p>{"Tie!"}</p>
           <button className="btn" onClick={handlePlayAgain}>
