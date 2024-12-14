@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { BotClass } from "../features/BotClass";
 import {
   cellEmpty,
   placeMark,
   checkGameOver,
   resetCells,
 } from "../features/methods";
+const bot = new BotClass();
 function TicTacToe() {
   let crossMark = '<i class="ri-close-large-line"></i>';
   let circleMark = '<i class="ri-circle-line"></i>';
+  const [playABot, setplayABot] = useState(true);
   const [xscore, setXScore] = useState(0);
   const [oscore, setOScore] = useState(0);
   const [currentPlayer, setCurrentPlayer] = useState("X");
@@ -27,9 +30,15 @@ function TicTacToe() {
     setWinnerFound(false);
   }
   useEffect(() => {
-    currentPlayer == "X" ? setPlayerIcon(crossMark) : setPlayerIcon(circleMark);
-  }, [currentPlayer]);
-  function handleClick({ target }) {
+    if (!playABot) {
+      currentPlayer == "X"
+        ? setPlayerIcon(crossMark)
+        : setPlayerIcon(circleMark);
+    } else {
+      setPlayerIcon(crossMark);
+    }
+  }, [currentPlayer, playABot]);
+  async function handleClick({ target }) {
     let cellId = target.id;
     // if this cell is empty
     if (cellEmpty(cellId)) {
@@ -50,23 +59,76 @@ function TicTacToe() {
         setWinnerFound
       );
 
-      setCurrentPlayer((prev) => (prev == "X" ? "O" : "X"));
+      if (playABot) {
+        await new Promise((res, rej) => {
+          setTimeout(() => {
+            res("ok bot");
+          }, 150);
+        });
+        let randomId = bot.getRandomCellId();
+        placeMark(randomId, circleMark, setMarkCount);
+        // check game over
+        checkGameOver(
+          setGameOver,
+          setWinner,
+          crossMark,
+          circleMark,
+          setTie,
+          markCount,
+          winner,
+          setXScore,
+          setOScore,
+          winnerFound,
+          setWinnerFound
+        );
+      } else {
+        setCurrentPlayer((prev) => (prev == "X" ? "O" : "X"));
+      }
     }
   }
 
   return (
     <div className="main">
-      <h1 className="player">{currentPlayer}'s turn</h1>
-      <div className="scorecard">
-        <p>
-          X's Score: <span className="score">{xscore}</span>
-        </p>
-        <p>
-          O's Score: <span className="score">{oscore}</span>
-        </p>
+      {playABot ? (
+        <p className="player">You are X</p>
+      ) : (
+        <h1 className="player">{currentPlayer}'s turn</h1>
+      )}
+      <div className="scorecard  ">
+        {!playABot ? (
+          <>
+            <p>
+              X's Score:{" "}
+              <span className="score px-2 py-1 bg-gray-700 rounded-md mr-5">
+                {xscore}
+              </span>
+            </p>
+            <p>
+              O's Score:{" "}
+              <span className="score px-2 py-1 bg-gray-700 rounded-md">
+                {oscore}
+              </span>
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              Player's Score:{" "}
+              <span className="score px-2 py-1 bg-gray-700 rounded-md mr-5">
+                {xscore}
+              </span>
+            </p>
+            <p>
+              Bot's Score:{" "}
+              <span className="score px-2 py-1 bg-gray-700 rounded-md">
+                {oscore}
+              </span>
+            </p>
+          </>
+        )}
       </div>
       <div id="slashmark"></div>
-      <div className="tictac" onClick={handleClick}>
+      <div className="tictac mt-4" onClick={handleClick}>
         <div id="0" className="cell"></div>
         <div id="1" className="cell"></div>
         <div id="2" className="cell"></div>
@@ -77,9 +139,37 @@ function TicTacToe() {
         <div id="7" className="cell"></div>
         <div id="8" className="cell"></div>
       </div>
+      <div className="options flex mt-14">
+        <button
+          className={`mr-3 border border-gray-500 px-5 py-1 text-lg rounded-md ${
+            playABot ? "bg-gray-700 text-white" : "text-black"
+          }`}
+          onClick={() => {
+            setplayABot(true);
+            handlePlayAgain();
+            setXScore(0);
+            setOScore(0);
+          }}
+        >
+          vs bot
+        </button>
+        <button
+          className={`ml-3 border border-gray-500 px-5 py-1 text-lg rounded-md  ${
+            !playABot ? "bg-gray-700 text-white" : "text-black"
+          }`}
+          onClick={() => {
+            setplayABot(false);
+            handlePlayAgain();
+            setXScore(0);
+            setOScore(0);
+          }}
+        >
+          2 player
+        </button>
+      </div>
       {gameOver ? (
-        <div className="result">
-          <p>{winner + " wins!"}</p>
+        <div className="result pb-24">
+          <p className="">{winner + " wins!"}</p>
           <button className="btn" onClick={handlePlayAgain}>
             Play again
           </button>
@@ -88,8 +178,8 @@ function TicTacToe() {
         ""
       )}
       {tie && !winnerFound ? (
-        <div className="result">
-          <p>{"Tie!"}</p>
+        <div className="result pb-24">
+          <p className="">{"Tie!"}</p>
           <button className="btn" onClick={handlePlayAgain}>
             Play again
           </button>
