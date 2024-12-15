@@ -13,9 +13,8 @@ function TicTacToe() {
   const [playABot, setplayABot] = useState(true);
   const [xscore, setXScore] = useState(0);
   const [oscore, setOScore] = useState(0);
-  const [botScore, setbotScore] = useState(0);
-  const [playerScore, setplayerScore] = useState(0);
-  const [currentPlayer, setCurrentPlayer] = useState("X");
+  const [startPlayer, setstartPlayer] = useState("X");
+  const [currentPlayer, setCurrentPlayer] = useState(startPlayer);
   const [playerIcon, setPlayerIcon] = useState(crossMark);
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
@@ -72,7 +71,7 @@ function TicTacToe() {
         let randomId = bot.getRandomCellId();
         placeMark(randomId, circleMark, setMarkCount);
         // check game over
-        checkGameOver(
+        tempGameOver = checkGameOver(
           setGameOver,
           setWinner,
           crossMark,
@@ -89,12 +88,18 @@ function TicTacToe() {
         setCurrentPlayer((prev) => (prev == "X" ? "O" : "X"));
       }
     }
+    // switch player and bot turn after gameover
+    if (playABot && tempGameOver) {
+      setCurrentPlayer((prev) => (prev == "X" ? "O" : "X"));
+    }
   }
 
   return (
     <div className="main">
       {playABot ? (
-        <p className="player">You are X</p>
+        <>
+          <h1 className="player">You are X</h1>
+        </>
       ) : (
         <h1 className="player">{currentPlayer}'s turn</h1>
       )}
