@@ -13,6 +13,8 @@ function TicTacToe() {
   const [playABot, setplayABot] = useState(true);
   const [xscore, setXScore] = useState(0);
   const [oscore, setOScore] = useState(0);
+  const [botScore, setbotScore] = useState(0);
+  const [playerScore, setplayerScore] = useState(0);
   const [currentPlayer, setCurrentPlayer] = useState("X");
   const [playerIcon, setPlayerIcon] = useState(crossMark);
   const [gameOver, setGameOver] = useState(false);
@@ -39,13 +41,15 @@ function TicTacToe() {
     }
   }, [currentPlayer, playABot]);
   async function handleClick({ target }) {
+    if (gameOver) return;
     let cellId = target.id;
+    let tempGameOver = false;
     // if this cell is empty
     if (cellEmpty(cellId)) {
       // place mark
       placeMark(cellId, playerIcon, setMarkCount);
       // check game over
-      checkGameOver(
+      tempGameOver = checkGameOver(
         setGameOver,
         setWinner,
         crossMark,
@@ -59,7 +63,7 @@ function TicTacToe() {
         setWinnerFound
       );
 
-      if (playABot) {
+      if (playABot && !tempGameOver) {
         await new Promise((res, rej) => {
           setTimeout(() => {
             res("ok bot");

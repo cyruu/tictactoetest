@@ -28,7 +28,7 @@ let methods = {
   ) => {
     const cell = document.getElementsByClassName("cell");
     const slashmark = document.getElementById("slashmark");
-
+    let tempGameOver = false;
     //------------------------check row----------------------
     //first row
     if (
@@ -37,7 +37,7 @@ let methods = {
       cell[0].innerHTML.trim() !== ""
     ) {
       setWinnerFound(true);
-      checkAndSetWinner(
+      tempGameOver = checkAndSetWinner(
         cell[0].innerHTML,
         setWinner,
         crossMark,
@@ -56,7 +56,7 @@ let methods = {
       cell[3].innerHTML.trim() !== ""
     ) {
       setWinnerFound(true);
-      checkAndSetWinner(
+      tempGameOver = checkAndSetWinner(
         cell[3].innerHTML,
         setWinner,
         crossMark,
@@ -75,7 +75,7 @@ let methods = {
       cell[6].innerHTML.trim() !== ""
     ) {
       setWinnerFound(true);
-      checkAndSetWinner(
+      tempGameOver = checkAndSetWinner(
         cell[6].innerHTML,
         setWinner,
         crossMark,
@@ -95,7 +95,7 @@ let methods = {
       cell[0].innerHTML.trim() !== ""
     ) {
       setWinnerFound(true);
-      checkAndSetWinner(
+      tempGameOver = checkAndSetWinner(
         cell[0].innerHTML,
         setWinner,
         crossMark,
@@ -114,7 +114,7 @@ let methods = {
       cell[1].innerHTML.trim() !== ""
     ) {
       setWinnerFound(true);
-      checkAndSetWinner(
+      tempGameOver = checkAndSetWinner(
         cell[1].innerHTML,
         setWinner,
         crossMark,
@@ -133,7 +133,7 @@ let methods = {
       cell[2].innerHTML.trim() !== ""
     ) {
       setWinnerFound(true);
-      checkAndSetWinner(
+      tempGameOver = checkAndSetWinner(
         cell[2].innerHTML,
         setWinner,
         crossMark,
@@ -153,7 +153,7 @@ let methods = {
       cell[0].innerHTML.trim() !== ""
     ) {
       setWinnerFound(true);
-      checkAndSetWinner(
+      tempGameOver = checkAndSetWinner(
         cell[0].innerHTML,
         setWinner,
         crossMark,
@@ -172,7 +172,7 @@ let methods = {
       cell[2].innerHTML.trim() !== ""
     ) {
       setWinnerFound(true);
-      checkAndSetWinner(
+      tempGameOver = checkAndSetWinner(
         cell[2].innerHTML,
         setWinner,
         crossMark,
@@ -188,6 +188,7 @@ let methods = {
     if (markCount == 8 && !winnerFound) {
       setTie(true);
     }
+    return tempGameOver;
   },
   resetCells: () => {
     const slashmark = document.getElementById("slashmark");
@@ -217,5 +218,6 @@ export const checkAndSetWinner = (
     setWinner("O");
   }
   setGameOver(true);
+  return true;
 };
 export const { cellEmpty, placeMark, checkGameOver, resetCells } = methods;
